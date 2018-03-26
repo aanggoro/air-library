@@ -8,12 +8,11 @@
 
 50.times do
   User.create(name: Faker::Name.name_with_middle,
-              email: Email::Intenet.free_email,
-              Password_digest: "a",
+              email: Faker::Internet.free_email,
+              password_digest: "a",
               img_url: Faker::Avatar.image,
               favorite_genre: Faker::Book.genre,
-              age: Faker::Number.betwen(1, 100),
-              bio: Faker::Dune.qoute,
+              bio: Faker::Dune.quote,
               latitude: Faker::Address.latitude,
               longitude: Faker::Address.longitude)
 end
@@ -24,12 +23,12 @@ end
               description: Faker::Company.catch_phrase,
               genre: Faker::Book.genre,
               isbn: Faker::Code.isbn,
-              publisher: Faker::Books.publisher,
-              user: User.find(Random.ran(50)+1))
+              publisher: Faker::Book.publisher,
+              user: User.find(Random.rand(50)+1))
 end
 
 200.times do
   Review.create(content: Faker::Hipster.sentence,
-                book: Book.find(Random.ran(200)+1),
-                user: User.find(Random.ran(50)+1))
+                book: Book.find(Random.rand(200)+1),
+                user: User.find(Random.rand(50)+1))
 end
