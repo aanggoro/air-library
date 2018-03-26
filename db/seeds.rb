@@ -5,3 +5,31 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+50.times do
+  User.create(name: Faker::Name.name_with_middle,
+              email: Email::Intenet.free_email,
+              Password_digest: "a",
+              img_url: Faker::Avatar.image,
+              favorite_genre: Faker::Book.genre,
+              age: Faker::Number.betwen(1, 100),
+              bio: Faker::Dune.qoute,
+              latitude: Faker::Address.latitude,
+              longitude: Faker::Address.longitude)
+end
+
+200.times do
+  Book.create(title: Faker::Book.title,
+              author: Faker::Book.author,
+              description: Faker::Company.catch_phrase,
+              genre: Faker::Book.genre,
+              isbn: Faker::Code.isbn,
+              publisher: Faker::Books.publisher,
+              user: User.find(Random.ran(50)+1))
+end
+
+200.times do
+  Review.create(content: Faker::Hipster.sentence,
+                book: Book.find(Random.ran(200)+1),
+                user: User.find(Random.ran(50)+1))
+end
